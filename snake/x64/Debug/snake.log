@@ -1,5 +1,5 @@
 ﻿  code.cpp
-D:\Users\ASUS\Desktop\snake\snake\code.cpp(115,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Users\ASUS\Desktop\snake\snake\code.cpp(198,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Users\ASUS\Desktop\snake\snake\code.cpp(200,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Users\ASUS\Desktop\snake\snake\code.cpp(160,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Users\ASUS\Desktop\snake\snake\code.cpp(256,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Users\ASUS\Desktop\snake\snake\code.cpp(258,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   snake.vcxproj -> D:\Users\ASUS\Desktop\snake\x64\Debug\snake.exe

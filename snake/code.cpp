@@ -6,6 +6,7 @@
 #define MAX_SNAKE_NUM 500
 #define WIDTH 640
 #define HEIGHT 480
+#define OBSTACLE 10 
 struct Pos
 {
 	int x;
@@ -51,6 +52,13 @@ struct Food
 	bool flag;//判断是否被吃掉
 }food;
 
+struct Obstacle {
+	int x;
+	int y;
+	DWORD color;
+};
+Obstacle obstacles[OBSTACLE];
+
 //初始化
 void GameInit()
 {
@@ -75,6 +83,39 @@ void GameInit()
 	food.color = RGB(rand() % 256, rand() % 256, rand() % 256);
 	food.flag = true;
 
+	//初始化障碍物
+	for (int i = 0; i < OBSTACLE; i++) 
+	{
+		bool valid = false;
+		while (!valid) 
+		{
+			valid = true;
+			int ox = rand() % (WIDTH / 10) * 10;
+			int oy = rand() % (HEIGHT / 10) * 10;
+
+			// 不与蛇重合
+			for (int j = 0; j < snake.num; j++) 
+			{
+				if (snake.coor[j].x == ox && snake.coor[j].y == oy) 
+				{
+					valid = false;
+					break;
+				}
+			}
+			// 不与食物重合
+			if (ox == food.x && oy == food.y)
+				valid = false;
+
+			if (valid)
+			{
+				obstacles[i].x = ox;
+				obstacles[i].y = oy;
+				obstacles[i].color = RGB(0,0,0);
+			}
+		}
+	}
+
+
 }
 
 void ShowStartInterface() 
@@ -87,6 +128,10 @@ void ShowStartInterface()
 	settextstyle(24, 0, _T("宋体"));
 	settextcolor(LIGHTGREEN);
 	outtextxy(WIDTH / 2 - 120, HEIGHT / 2, _T("按任意键开始游戏"));
+
+	settextstyle(20, 0, _T("宋体"));
+	settextcolor(LIGHTBLUE);
+	outtextxy(WIDTH / 2 - 180, HEIGHT / 2+50, _T("说明：碰到黑色障碍物或边界游戏结束"));
 
 	settextstyle(16, 0, _T("宋体"));
 	settextcolor(LIGHTBLUE);
@@ -163,6 +208,13 @@ bool CheckCollision()
 		}
 	}
 
+	for (int i = 0; i < OBSTACLE; i++) 
+	{
+		if (snake.coor[0].x == obstacles[i].x &&snake.coor[0].y == obstacles[i].y) 
+		{
+			return true;
+		}
+	}
 	return false;
 }
 
@@ -192,6 +244,12 @@ void GameDraw()
 	{
 		setfillcolor(food.color);
 		solidellipse(food.x, food.y, food.x + 10, food.y + 10);
+	}
+	//画障碍物
+	for (int i = 0; i < OBSTACLE; i++) 
+	{
+		setfillcolor(obstacles[i].color);
+		fillrectangle(obstacles[i].x, obstacles[i].y, obstacles[i].x + 10, obstacles[i].y + 10);
 	}
 	//显示信息
 	char temp[20];
